@@ -1,21 +1,40 @@
 <?php
+
 /**
  * Plugin Name:       Dblocks Info Block
- * Description:       Example block scaffolded with Create Block tool.
- * Requires at least: 6.1
- * Requires PHP:      7.0
- * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Description:       Notifications Block (Info, Tip, Warning, Error)
+ * Requires at least: 6.3.0
+ * Requires PHP:      7.4
+ * Version:           0.0.1
+ * Author:            devusrmk
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       dblocks-info-block
- *
- * @package CreateBlock
+ * Text Domain:       dblocks_info_block
+ * Website:           
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+$plugin_prefix = 'DBLOCKSINFOBLOCK';
+
+define($plugin_prefix . '_DIR', plugin_basename(__DIR__));
+define($plugin_prefix . '_BASE', plugin_basename(__FILE__));
+define($plugin_prefix . '_PATH', plugin_dir_path(__FILE__));
+define($plugin_prefix . '_VER', '0.0.1');
+define($plugin_prefix . '_CACHE_KEY', 'dblocks_info_block-cache-key-for-plugin');
+define($plugin_prefix . '_REMOTE_URL', 'https://dplugins.dev/hoster/wp-content/uploads/downloads/36/info.json');
+
+require constant($plugin_prefix . '_PATH') . 'inc/update.php';
+
+new DPUpdateChecker(
+	constant($plugin_prefix . '_DIR'),
+	constant($plugin_prefix . '_VER'),
+	constant($plugin_prefix . '_CACHE_KEY'),
+	constant($plugin_prefix . '_REMOTE_URL'),
+	constant($plugin_prefix . '_BASE')
+);
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
